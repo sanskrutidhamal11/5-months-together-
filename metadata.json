@@ -1,0 +1,6 @@
+{
+  "name": "Our Journey of Love",
+  "description": "An emotionally unforgettable, interactive, and cinematic 5-month anniversary experience handcrafted for Aaho.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
