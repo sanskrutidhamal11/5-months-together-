@@ -71,26 +71,42 @@ export default function EnvelopeLetter() {
             }}
           >
             <p className="mb-[2.2rem]">
-              If someone had asked me five months ago what love would feel like, I could never have described it. Today I can 🥹. Love is waiting for 11:11 because I know you'll say 'I love you'. Love is smiling at my phone when your name appears. Love is feeling safe even when hundreds of kilometers separate us. Love is dreaming about a future where distance becomes an old story we smile about. Love is me talking about you non-stop in the house. Love is missing you in the smallest moments of the day. Love is looking into your eyes so lovingly that it feels like home. Love is biting you with the intention to eat you (my handsome man 😘). Love is having a lifetime subscription of forehead kisses 🫶. Love is absolutely me trying to make a website 😂. Love is you ❤️ and you are mine 💝.
+              If someone had asked me five months ago what love would feel like, I could never have described it<br/>
+              Today I can 🥹<br/>
+              Love is waiting for 11:11 because I know you'll say 'I love you' <br/>
+              Love is smiling at my phone when your name appears<br/>
+              Love is feeling safe even when hundreds of kilometers separate us<br/>
+              Love is dreaming about a future where distance becomes an old story we smile about<br/>
+              Love. is me talking about you non stop in the house<br/>
+              Love is missing you in the smallest moments of the day <br/>
+              Love is looking into your eyes so lovingly that it feels like home <br/>
+              Love is biting you with the intention to eat you (my handsome man 😘)<br/>
+              Love is having a lifetime subscription of forehead kisses 🫶<br/>
+              Love is absolutely me trying to make a website 😂<br/>
+              Love is you ❤️<br/>
+              and you are mine 💝
             </p>
-
             <p className="mb-[2.2rem]">
-              Five months ago, we became 'us'. Today is simply another page in the beautiful story we're writing together.
+              Five months ago, we became 'us'<br/>
+              Today is simply another page in the beautiful story we're writing together.
             </p>
-
             <p className="mb-[2.2rem]">
-              Whether we're celebrating our 5th month, our 5th year, or our 50th anniversary, I hope I still get to look at you with the same love and admiration I have today.
+              Whether we're celebrating our 5th month, our 5th year, or our 50th anniversary,<br/>
+              I hope I still get to look at you with the same love and admiration I have today
             </p>
-
             <p className="mb-[2.2rem] pb-[0.2rem]">
-              Happy 5-month anniversary, my love. Thank you for choosing me every single day. I choose you too today, tomorrow, and every day that follows. I love you sooooooooooo much my darling 🌏💝. I wish to be your wifey in every universe 💍.
+              Happy 5-month anniversary, my love <br/>
+              Thank you for choosing me every single day<br/>
+              I choose you too today, tomorrow, and every day that follows<br/>
+              I love you sooooooooooo much my darling 🌏💝<br/>
+              I wish to be your wifey in every universe 💍
             </p>
           </div>
 
           {/* Letter Footer */}
           <div className="mt-12 text-right border-t border-rose-gold/15 pt-6 pr-4">
             <span className="text-xs md:text-sm font-mono text-[#5D5045]/70 uppercase block tracking-wider">
-              With all my love & stars,
+              With all my love,
             </span>
             <span className="font-script text-4xl text-[#B76E79] block mt-2">
               Bayko ❤️
