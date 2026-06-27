@@ -134,7 +134,7 @@ export default function SecretSecrets() {
       </motion.button>
 
       {/* Secrets Counter Indicator (Bottom left margin, very subtle minimalist design) */}
-      <div className="fixed left-6 bottom-6 z-40 text-[9px] font-mono text-ivory/40 tracking-widest uppercase select-none pointer-events-none">
+      <div className="fixed left-6 bottom-6 z-40 text-xs font-mono text-ivory/60 tracking-widest uppercase select-none pointer-events-none">
         Easter Eggs Found: {foundIds.length} / 6
       </div>
 
@@ -158,7 +158,7 @@ export default function SecretSecrets() {
                 {activeSecret.type === 'camera' && '📸'}
               </div>
 
-              <span className="text-[10px] font-mono text-rose-gold uppercase tracking-widest block mb-1">
+              <span className="text-xs font-mono text-rose-gold uppercase tracking-widest block mb-1">
                 {activeSecret.title}
               </span>
               

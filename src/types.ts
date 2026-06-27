@@ -50,9 +50,7 @@ export interface FutureMilestone {
 
 export interface PolaroidPhoto {
   id: number;
-  title: string;
-  date: string;
-  caption: string;
+  word: string;
   sketchType: 'beginning' | 'train' | 'meeting' | 'dreams' | 'forever';
   rotation: number; // degrees
 }

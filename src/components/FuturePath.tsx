@@ -60,9 +60,9 @@ export default function FuturePath() {
         transition={{ duration: 1 }}
         className="text-center mb-16"
       >
-        <span className="text-xs font-mono text-rose-gold uppercase tracking-widest block mb-2">The Horizon</span>
+        <span className="text-sm font-mono text-rose-gold uppercase tracking-widest block mb-2">The Horizon</span>
         <h3 className="text-3xl md:text-5xl font-serif italic text-ivory">Our Future Path</h3>
-        <p className="text-xs font-mono text-ivory/50 mt-2">Click each glowing node to gaze into our tomorrow</p>
+        <p className="text-sm font-mono text-ivory/65 mt-2">Click each glowing node to gaze into our tomorrow</p>
       </motion.div>
 
       <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-12 gap-10 items-center relative min-h-[450px]">
@@ -159,7 +159,7 @@ export default function FuturePath() {
                   transition={{ duration: 0.4 }}
                   className="bg-charcoal/60 backdrop-blur-md border border-rose-gold/30 rounded-3xl p-8 shadow-[0_12px_36px_rgba(0,0,0,0.4)]"
                 >
-                  <span className="text-xs font-mono text-rose-gold uppercase tracking-wider block mb-1">
+                  <span className="text-sm font-mono text-rose-gold uppercase tracking-wider block mb-1.5">
                     {m.year}
                   </span>
                   <div className="flex items-center gap-3 mb-4">
@@ -173,7 +173,7 @@ export default function FuturePath() {
                   </p>
                   
                   {/* Small custom decorative software tag since he is an engineer */}
-                  <div className="mt-6 pt-4 border-t border-rose-gold/15 flex items-center justify-between text-[10px] font-mono text-ivory/40">
+                  <div className="mt-6 pt-4 border-t border-rose-gold/15 flex items-center justify-between text-xs font-mono text-ivory/60">
                     <span>Path segment: APPROVED</span>
                     <span>status: INFINITE</span>
                   </div>

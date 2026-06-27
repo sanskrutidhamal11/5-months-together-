@@ -6,6 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Heart, Star, Sparkles } from 'lucide-react';
+import ShootingStars from './ShootingStars';
 
 interface FinalSceneProps {
   isActive: boolean;
@@ -18,6 +19,7 @@ interface ClimaxParticle {
   y: number;
   scale: number;
   duration: number;
+  horizontalSwing: number;
 }
 
 export default function FinalScene({ isActive }: FinalSceneProps) {
@@ -38,15 +40,16 @@ export default function FinalScene({ isActive }: FinalSceneProps) {
   const handleYesPressed = () => {
     setYesPressed(true);
     
-    // Generate a massive shower of beautiful heart and petal emojis
+    // Generate a gentle shower of beautiful heart and petal emojis
     const emojis = ['❤️', '💖', '💝', '🌸', '✨', '🌹', '💕', '🧁'];
-    const generated: ClimaxParticle[] = Array.from({ length: 80 }, (_, i) => ({
+    const generated: ClimaxParticle[] = Array.from({ length: 35 }, (_, i) => ({
       id: i,
       emoji: emojis[Math.floor(Math.random() * emojis.length)],
       x: Math.random() * 100,
       y: 110, // starts below screen
-      scale: Math.random() * 1.5 + 0.6,
-      duration: Math.random() * 4 + 3 // 3-7 seconds
+      scale: Math.random() * 1.0 + 0.5, // 0.5 to 1.5 scale
+      duration: Math.random() * 4 + 4, // 4-8 seconds (slower, more elegant)
+      horizontalSwing: Math.random() * 20 - 10 // static swing path
     }));
     
     setClimaxParticles(generated);
@@ -79,6 +82,30 @@ export default function FinalScene({ isActive }: FinalSceneProps) {
           />
         )}
       </AnimatePresence>
+
+      {/* Many slow shooting stars in the background */}
+      <ShootingStars />
+
+      {/* Confetti Explosion / Rain (Full screen root level) */}
+      {yesPressed && climaxParticles.map((p) => (
+        <motion.div
+          key={p.id}
+          initial={{ y: '110vh', x: `${p.x}vw`, rotate: 0, opacity: 0 }}
+          animate={{ 
+            y: '-10vh', 
+            x: `${p.x + p.horizontalSwing}vw`, 
+            rotate: 360,
+            opacity: [0, 1, 1, 0]
+          }}
+          transition={{ duration: p.duration, ease: 'easeOut', repeat: Infinity }}
+          className="fixed pointer-events-none z-10"
+          style={{
+            fontSize: `${p.scale * 1.5}rem`,
+          }}
+        >
+          {p.emoji}
+        </motion.div>
+      ))}
 
       {/* MAIN SCREEN INTERACTIVE QUESTION */}
       <div className="relative z-10 w-full max-w-xl text-center px-6">
@@ -115,27 +142,6 @@ export default function FinalScene({ isActive }: FinalSceneProps) {
               transition={{ duration: 2.5 }}
               className="flex flex-col items-center"
             >
-              {/* Confetti Explosion / Rain */}
-              {climaxParticles.map((p) => (
-                <motion.div
-                  key={p.id}
-                  initial={{ y: '110vh', x: `${p.x}vw`, rotate: 0, opacity: 0 }}
-                  animate={{ 
-                    y: '-10vh', 
-                    x: `${p.x + (Math.random() * 20 - 10)}vw`, 
-                    rotate: 360,
-                    opacity: [0, 1, 1, 0]
-                  }}
-                  transition={{ duration: p.duration, ease: 'easeOut', repeat: Infinity }}
-                  className="absolute pointer-events-none z-0"
-                  style={{
-                    fontSize: `${p.scale * 1.5}rem`,
-                  }}
-                >
-                  {p.emoji}
-                </motion.div>
-              ))}
-
               <div className="z-10 relative mt-8 space-y-6">
                 <motion.p
                   initial={{ opacity: 0, y: 15 }}
@@ -166,9 +172,10 @@ export default function FinalScene({ isActive }: FinalSceneProps) {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 0.9, scale: 1 }}
                   transition={{ duration: 2, delay: 5 }}
-                  className="pt-12 text-xs font-mono text-ivory/30 tracking-widest uppercase"
+                  className="pt-12 text-base md:text-lg font-mono text-ivory/65 tracking-widest uppercase text-center space-y-1.5"
                 >
-                  HAPPY 5 MONTHS AAHO • S & A FOREVER
+                  HAPPY 5 MONTHS AAHO <br />
+                  • S & H FOREVER •
                 </motion.div>
               </div>
             </motion.div>

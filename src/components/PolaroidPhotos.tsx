@@ -11,41 +11,31 @@ import { PolaroidPhoto } from '../types';
 const POLAROIDS: PolaroidPhoto[] = [
   {
     id: 1,
-    title: "Our Sparks",
-    date: "Feb 2026",
-    caption: "Early chats, typing all night...",
+    word: "I",
     sketchType: "beginning",
     rotation: -4
   },
   {
     id: 2,
-    title: "The Train",
-    date: "Mar 2026",
-    caption: "Journeying to you, heart beating fast...",
+    word: "love",
     sketchType: "train",
     rotation: 3
   },
   {
     id: 3,
-    title: "First Touch",
-    date: "Mar 2026",
-    caption: "Our café date, nervous laughter...",
+    word: "you",
     sketchType: "meeting",
     rotation: -2
   },
   {
     id: 4,
-    title: "LDR Spark",
-    date: "May 2026",
-    caption: "Midnight calls, video screens...",
+    word: "so",
     sketchType: "dreams",
     rotation: 5
   },
   {
     id: 5,
-    title: "Our Dreams",
-    date: "Jun 2026",
-    caption: "Building projects, loving forever...",
+    word: "much",
     sketchType: "forever",
     rotation: -3
   }
@@ -53,7 +43,7 @@ const POLAROIDS: PolaroidPhoto[] = [
 
 export default function PolaroidPhotos() {
   return (
-    <div className="w-full max-w-5xl mx-auto px-4 py-16 relative z-30 flex flex-col items-center overflow-hidden">
+    <div className="w-full max-w-5xl mx-auto px-4 pt-16 pb-2 relative z-30 flex flex-col items-center overflow-hidden">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -61,9 +51,8 @@ export default function PolaroidPhotos() {
         transition={{ duration: 1 }}
         className="text-center mb-16"
       >
-        <span className="text-xs font-mono text-rose-gold uppercase tracking-widest block mb-2">Captured Moments</span>
+        <span className="text-sm font-mono text-rose-gold uppercase tracking-widest block mb-2">Captured Moments</span>
         <h3 className="text-3xl md:text-5xl font-serif italic text-ivory">Our Visual Diary</h3>
-        <p className="text-xs font-mono text-ivory/50 mt-2">Hover to zoom into our memories</p>
       </motion.div>
 
       {/* Hanging String Container */}
@@ -208,16 +197,10 @@ export default function PolaroidPhotos() {
                   </div>
 
                   {/* Caption */}
-                  <div className="w-full pt-3 text-center">
-                    <span className="font-script text-xl leading-none text-rose-gold block mb-1">
-                      {photo.title}
+                  <div className="w-full pt-4 pb-2 text-center">
+                    <span className="font-script text-5.5xl md:text-6xl leading-none text-rose-gold block font-bold select-none">
+                      {photo.word}
                     </span>
-                    <span className="text-[10px] text-charcoal/40 font-mono tracking-wider block mb-1">
-                      {photo.date}
-                    </span>
-                    <p className="text-[9px] text-charcoal/60 leading-tight font-sans">
-                      {photo.caption}
-                    </p>
                   </div>
                 </motion.div>
               </motion.div>

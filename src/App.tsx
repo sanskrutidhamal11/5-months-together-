@@ -13,8 +13,8 @@ import HeartQuest from './components/HeartQuest';
 import PolaroidPhotos from './components/PolaroidPhotos';
 import StoryBook from './components/StoryBook';
 import EnvelopeLetter from './components/EnvelopeLetter';
-import FuturePath from './components/FuturePath';
 import FinalScene from './components/FinalScene';
+import IntroFloatingHearts from './components/IntroFloatingHearts';
 
 type ScreenState = 'intro' | 'journey' | 'anniversary' | 'diary' | 'final';
 
@@ -24,6 +24,7 @@ export default function App() {
   const [triggerMusic, setTriggerMusic] = useState(false);
   const [collectedHearts, setCollectedHearts] = useState<number[]>([]);
   const [activeStep, setActiveStep] = useState(0);
+  const [chatgptCompleted, setChatgptCompleted] = useState(false);
 
   // Intro text segments fade sequence
   const [introStep, setIntroStep] = useState(0);
@@ -93,6 +94,9 @@ export default function App() {
             {/* Subtle floating background stars for intro */}
             <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,240,0.15)_1.2px,transparent_1.2px)] bg-[size:16px_16px] pointer-events-none" />
 
+            {/* Floating hearts from top to bottom */}
+            <IntroFloatingHearts />
+
             <div className="max-w-xl space-y-8 select-none relative z-10">
               <AnimatePresence>
                 {introStep >= 1 && (
@@ -155,14 +159,14 @@ export default function App() {
             className="min-h-screen py-12 flex flex-col justify-between"
           >
             {/* Minimal Header */}
-            <header className="w-full max-w-6xl mx-auto px-6 flex justify-between items-center mb-6">
-              <div className="flex items-center gap-2">
-                <Heart className="w-5 h-5 text-rose-gold fill-current" />
-                <span className="font-display font-semibold text-ivory text-sm tracking-widest uppercase">
-                  5 Months of Devotion
+            <header className="w-full max-w-6xl mx-auto px-6 flex justify-between items-start mb-6">
+              <div className="flex items-start gap-3">
+                <Heart className="w-6 h-6 text-rose-gold fill-current mt-1 flex-shrink-0" />
+                <span className="font-display font-bold text-ivory text-lg md:text-xl tracking-wide leading-tight">
+                  5 months of being <br /> yours 💞
                 </span>
               </div>
-              <span className="text-[10px] font-mono text-ivory/40 uppercase tracking-widest">
+              <span className="text-xs md:text-sm font-mono text-ivory/60 uppercase tracking-widest mt-1">
                 Status: IN QUEST
               </span>
             </header>
@@ -176,8 +180,8 @@ export default function App() {
             />
 
             {/* Minimal Footer */}
-            <footer className="w-full text-center py-4 text-[10px] font-mono text-ivory/30 tracking-widest select-none">
-              S & A • Handcrafted with love
+            <footer className="w-full text-center py-4 text-xs font-mono text-ivory/50 tracking-widest select-none">
+              S & H • Handcrafted with love
             </footer>
           </motion.div>
         )}
@@ -194,6 +198,50 @@ export default function App() {
             {/* Star Grid Background */}
             <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,240,0.15)_1.2px,transparent_1.2px)] bg-[size:16px_16px] pointer-events-none" />
 
+            {/* Floating cute soft emojis behind the card */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+               {Array.from({ length: 12 }).map((_, idx) => {
+                 const emojis = ['✨', '💖', '💞', '🌸', '🧸', '🎈', '☁️', '🤍', '🎀', '🧸'];
+                 const emoji = emojis[idx % emojis.length];
+                 const delay = idx * 1.2;
+                 const duration = 6 + (idx % 4) * 2.5; 
+                 const startLeft = 10 + (idx * 9) % 80; 
+                 const size = 18 + (idx % 3) * 6; 
+                 
+                 return (
+                   <motion.span
+                     key={idx}
+                     initial={{ 
+                       opacity: 0, 
+                       y: "110vh", 
+                       x: 0, 
+                       scale: 0.5,
+                       left: `${startLeft}%` 
+                     }}
+                     animate={{ 
+                       opacity: [0, 0.7, 0.7, 0], 
+                       y: "-10vh",
+                       x: [0, (idx % 2 === 0 ? 40 : -40), 0],
+                       scale: [0.5, 1, 1, 0.5]
+                     }}
+                     transition={{ 
+                       duration: duration,
+                       repeat: Infinity,
+                       delay: delay,
+                       ease: "linear"
+                     }}
+                     style={{ 
+                       fontSize: `${size}px`,
+                       position: 'absolute'
+                     }}
+                     className="select-none filter drop-shadow-[0_2px_5px_rgba(0,0,0,0.2)]"
+                   >
+                     {emoji}
+                   </motion.span>
+                 );
+               })}
+             </div>
+
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -204,10 +252,6 @@ export default function App() {
                 ❤️
               </div>
 
-              <span className="text-xs font-mono text-rose-gold uppercase tracking-widest block">
-                Quest Completed Successfully
-              </span>
-
               <h2 className="text-4xl md:text-5.5xl font-display font-bold text-ivory tracking-tight leading-none">
                 HAPPY <br />
                 <span className="text-rose-gold font-serif italic font-normal text-5xl md:text-7.5xl block my-4">5 MONTH</span> 
@@ -215,7 +259,7 @@ export default function App() {
               </h2>
 
               <p className="font-script text-4xl text-rose-gold tracking-wide">
-                Aaho ❤️
+                Aaho
               </p>
 
               <div className="pt-6">
@@ -226,7 +270,7 @@ export default function App() {
                   className="px-8 py-3.5 bg-rose-gold text-white hover:bg-rose-gold/90 rounded-full font-display font-medium text-sm tracking-widest flex items-center gap-2 mx-auto cursor-pointer shadow-md border-2 border-white/20"
                 >
                   <BookOpen className="w-4 h-4" />
-                  <span>UNWRAP OUR SCRAPBOOK ✨</span>
+                  <span>There's more ✨</span>
                 </motion.button>
               </div>
             </motion.div>
@@ -246,13 +290,13 @@ export default function App() {
             <header className="w-full max-w-6xl mx-auto px-6 py-8 flex justify-between items-center">
               <div className="flex items-center gap-2">
                 <Heart className="w-4 h-4 text-rose-gold fill-current" />
-                <span className="font-display font-semibold text-ivory text-xs tracking-widest uppercase">
-                  S & A • Love Story
+                <span className="font-display font-semibold text-ivory text-sm tracking-widest uppercase">
+                  S & H • Love Story
                 </span>
               </div>
               <div className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-gold animate-pulse" />
-                <span className="text-[10px] font-mono text-ivory/50 uppercase tracking-widest">
+                <Sparkles className="w-4.5 h-4.5 text-gold animate-pulse" />
+                <span className="text-xs font-mono text-ivory/70 uppercase tracking-widest">
                   Anniversary Edition
                 </span>
               </div>
@@ -261,14 +305,17 @@ export default function App() {
             {/* Polaroid moments string */}
             <PolaroidPhotos />
 
-            {/* Scrapbook Chapters (10 story cards bento style) */}
-            <StoryBook />
+            {/* Replaced Scrapbook with ChatGPT stories */}
+            {!chatgptCompleted && (
+              <StoryBook onComplete={() => setChatgptCompleted(true)} />
+            )}
 
-            {/* Wax Envelope Sealed Letter */}
-            <EnvelopeLetter />
+            {/* Wax Envelope Sealed Letter (appears only after ChatGPT cards are completed) */}
+            {chatgptCompleted && (
+              <EnvelopeLetter />
+            )}
 
-            {/* Future path disappearing into stars */}
-            <FuturePath />
+
 
             {/* Final transition call to action button */}
             <div className="w-full flex flex-col items-center justify-center py-24 border-t border-rose-gold/10">
@@ -276,12 +323,9 @@ export default function App() {
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="text-center space-y-6"
+                className="text-center flex flex-col items-center"
               >
-                <span className="font-script text-3xl text-rose-gold">And finally...</span>
-                <p className="font-serif text-ivory/60 text-sm max-w-sm mx-auto">
-                  There is one last thing I want to ask you, Aaho.
-                </p>
+                <span className="font-script text-5xl md:text-6.5xl text-rose-gold block mb-8 leading-none">And finally...</span>
                 
                 <motion.button
                   whileHover={{ scale: 1.05 }}
@@ -295,8 +339,8 @@ export default function App() {
             </div>
 
             {/* Footer */}
-            <footer className="w-full text-center py-8 text-[10px] font-mono text-ivory/30 tracking-widest select-none">
-              © 2026 S & A • ALWAYS AND FOREVER
+            <footer className="w-full text-center py-8 text-xs font-mono text-ivory/50 tracking-widest select-none">
+              © 2026 S & H • ALWAYS AND FOREVER
             </footer>
           </motion.div>
         )}
