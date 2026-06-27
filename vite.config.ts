@@ -5,6 +5,7 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
+    base: '/5-months-together-/',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
